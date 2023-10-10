@@ -9,7 +9,12 @@ module.exports = {
         sans: ['Open Sans', ...defaultTheme.fontFamily.sans]
       },
       colors: {
-        'mcl-orange': '#ff6d01'
+        'mcl-orange': '#ff6d01',
+        'mcl-pale-orange': '#ff984a'
+      },
+      boxShadow: {
+        'mcl-orange': '0 0 3px 3px #ff6d01',
+        'mcl-pale-orange': '0 0 3px 3px #ff984a'
       }
     }
   },

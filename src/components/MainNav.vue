@@ -1,26 +1,39 @@
 <template>
   <header class="w-full text-sm">
-    <div class="fixed top-0 left-0 w-full min-h-16 bg-white">
+    <div class="fixed top-0 left-0 h-16 w-full bg-white">
       <div
-        class="flex flex-nowrap h-full border-b border-solid border-mcl-orange mx-auto px-8 place-items-center"
+        class="flex flex-nowrap h-full border-b border-solid border-mcl-orange mx-auto px-8 items-center"
       >
-        <a :href="url" class="flex h-full items-center text-xl">{{ company }}</a>
+        <a :href="url" class="flex h-full items-center text-xl font-medium text-gray-500">
+          {{ company }}
+        </a>
 
-        <nav class="ml-12 h-full">
-          <ul class="flex h-full list-none items-center">
+        <nav class="ml-12">
+          <ul class="flex list-none">
             <li v-for="menuItem in menuItems" :key="menuItem" class="ml-9 h-full">
               <a href="" class="flex h-full py-2.5">{{ menuItem }}</a>
             </li>
           </ul>
         </nav>
+        <div class="ml-auto flex h-full items-center">
+          <ProfileImage v-if="isLoggedIn" />
+          <ActionButton v-else text="Sign In" @:click="loginUser" />
+        </div>
       </div>
     </div>
   </header>
 </template>
 
 <script>
+import ActionButton from './ActionButton.vue'
+import ProfileImage from './ProfileImage.vue'
+
 export default {
   name: 'MainNav',
+  components: {
+    ActionButton,
+    ProfileImage
+  },
   data() {
     return {
       company: 'SnoxE Careers',
@@ -28,7 +41,13 @@ export default {
         firstname: 'SnoxE'
       },
       url: 'https://careers.google.com',
-      menuItems: ['Teams', 'Location', 'Life @ SnoxE Corp', 'How we hire', 'Students', 'Jobs']
+      menuItems: ['Teams', 'Location', 'Life @ SnoxE Corp', 'How we hire', 'Students', 'Jobs'],
+      isLoggedIn: false
+    }
+  },
+  methods: {
+    loginUser() {
+      this.isLoggedIn = true
     }
   }
 }
